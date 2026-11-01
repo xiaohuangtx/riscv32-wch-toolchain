@@ -16,6 +16,10 @@
 
 FROM debian:bookworm-slim
 
+# source 让 ghcr.io 把镜像包关联到仓库, 仓库的 Actions 可直接用 GITHUB_TOKEN 拉取
+LABEL org.opencontainers.image.source=https://github.com/xiaohuangtx/riscv32-wch-toolchain \
+      org.opencontainers.image.description="WCH RISC-V GCC 15.2 (MounRiver) 编译环境, 用于 CH592 固件"
+
 # 由 BuildKit 根据 --platform 自动填入
 ARG TARGETARCH
 # 其余 ARG 放在用到它的那一步前面: ARG 的值变化会让它之后所有 RUN 层的缓存失效
